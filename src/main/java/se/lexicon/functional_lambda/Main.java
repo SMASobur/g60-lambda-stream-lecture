@@ -66,6 +66,11 @@ public class Main {
         List<Todo> updatedHighpriorityTasks= applyToMatchingTasks(todos, highPriority, markCompleted);
         updatedHighpriorityTasks.forEach(task -> printTask.run(task));
 
+        // Delete high priority tasks
+        System.out.println("\n--- Delete high priority tasks ---");
+        List<Todo> deletedHighPriority = deleteMatchingTasks(todos, todo -> todo.getPriority() >= 4);
+        System.out.println("Deleted high priority tasks: " + deletedHighPriority);
+
         System.out.println("\n--- Updating tasks: Increase priority of not completed tasks ---");
         List<Todo> updatedNotCompletedTsks = applyToMatchingTasks(todos,notCompleted,increasePriority);
         updatedNotCompletedTsks.forEach(task -> printTask.run(task));
@@ -74,6 +79,18 @@ public class Main {
         System.out.println(" List of Task: "+ todos.size());
         todos.removeAll(todos);
         System.out.println(" Remaining Task: "+ todos.size());
+    }
+
+    public static List<Todo> deleteMatchingTasks(List<Todo> todos, TaskFilter filter) {
+        List<Todo> deleted = new ArrayList<>();
+        todos.removeIf(task -> {
+            if (filter.matches(task)) {
+                deleted.add(task);
+                return true;
+            }
+            return false;
+        });
+        return deleted;
     }
 
 
