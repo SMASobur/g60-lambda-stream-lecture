@@ -7,18 +7,18 @@ public class Main {
     void main() {
 
         List<Todo> todos = new ArrayList<>();
-        todos.add(new Todo("Fix bugs", 2, false));
-        todos.add(new Todo("Write tests", 1, false));
-        todos.add(new Todo("Deploy app", 3, false));
-        todos.add(new Todo("Refactor code", 1, true));
-        todos.add(new Todo("Update documentation", 1, false));
-        todos.add(new Todo("Investigate production issue", 5, false));
-        todos.add(new Todo("Code review PR #42", 2, true));
-        todos.add(new Todo("Optimize database query", 4, false));
-        todos.add(new Todo("Plan next sprint", 3, true));
-        todos.add(new Todo("Clean up warnings", 2, false));
-        todos.add(new Todo("Improve UI layout", 3, false));
-        todos.add(new Todo("Release hotfix", 5, true));
+        todos.add(new Todo(1,"Fix bugs", 2, false));
+        todos.add(new Todo(2,"Write tests", 1, false));
+        todos.add(new Todo(3,"Deploy app", 3, false));
+        todos.add(new Todo(4,"Refactor code", 1, true));
+        todos.add(new Todo(5,"Update documentation", 1, false));
+        todos.add(new Todo(6,"Investigate production issue", 5, false));
+        todos.add(new Todo(7,"Code review PR #42", 2, true));
+        todos.add(new Todo(8,"Optimize database query", 4, false));
+        todos.add(new Todo(9,"Plan next sprint", 3, true));
+        todos.add(new Todo(10,"Clean up warnings", 2, false));
+        todos.add(new Todo(11,"Improve UI layout", 3, false));
+        todos.add(new Todo(12,"Release hotfix", 5, true));
 
         System.out.println("\n--- All tasks (initial list) ---");
         // Iterating through the list using a for-each loop
@@ -28,7 +28,7 @@ public class Main {
 
         // Defining filters using Lambdas : boolean matches(Todo todo);
 
-       TaskFilter highPriority = todo -> todo.getPriority() >= 4;
+        TaskFilter highPriority = todo -> todo.getPriority() >= 4;
 
         // Expanded syntax version
        /* TaskFilter highPriority1 = (Todo todo) -> {
@@ -70,7 +70,16 @@ public class Main {
         List<Todo> updatedNotCompletedTsks = applyToMatchingTasks(todos,notCompleted,increasePriority);
         updatedNotCompletedTsks.forEach(task -> printTask.run(task));
 
+        System.out.println("\n--- Delete all the Tasks ---");
+        System.out.println(" List of Task: "+ todos.size());
+        List<Todo> deletedTaskList = removeAllTasks(todos);
+        System.out.println(" Successfully deleted: " +deletedTaskList.size() +" \n Remaining Task: "+ todos.size());
+    }
 
+    public static List<Todo> removeAllTasks (List<Todo> todos){
+        List<Todo> deletedTasks = new ArrayList<>(todos);
+        todos.clear();
+        return deletedTasks;
     }
 
 
@@ -98,6 +107,5 @@ public class Main {
 
 
 }
-
 
 

@@ -1,18 +1,23 @@
 package se.lexicon.functional_lambda;
 
 public class Todo {
+    private int id;
     private String title;      // The name or description of the task
     private int priority;     // The importance level (e.g., 1-5)
     private boolean completed; // The status: true if done, false if pending
 
 
-    public Todo(String title, int priority, boolean completed) {
+    public Todo(int id, String title, int priority, boolean completed) {
+        this.id = id;
         this.title = title;
         this.priority = priority;
         this.completed = completed;
     }
 
-    // --- Getters and Setters (Accessors and Mutators) ---
+
+// --- Getters and Setters (Accessors and Mutators) ---
+
+    public int getId() {return id; }
 
     public String getTitle() {
         return title;
@@ -38,13 +43,14 @@ public class Todo {
         this.priority = priority;
     }
 
-
     @Override
     public String toString() {
         return "Todo{" +
-                "title='" + title + '\'' +
+                ", id=" + id +
+                ", title='" + title + '\'' +
                 ", priority=" + priority +
-                ", completed=" + completed +
+                "completed=" + completed +
                 '}';
     }
+
 }
