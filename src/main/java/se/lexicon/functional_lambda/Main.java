@@ -72,16 +72,9 @@ public class Main {
 
         System.out.println("\n--- Delete all the Tasks ---");
         System.out.println(" List of Task: "+ todos.size());
-        List<Todo> deletedTaskList = removeAllTasks(todos);
-        System.out.println(" Successfully deleted: " +deletedTaskList.size() +" \n Remaining Task: "+ todos.size());
+        todos.removeAll(todos);
+        System.out.println(" Remaining Task: "+ todos.size());
     }
-
-    public static List<Todo> removeAllTasks (List<Todo> todos){
-        List<Todo> deletedTasks = new ArrayList<>(todos);
-        todos.clear();
-        return deletedTasks;
-    }
-
 
 
     public static List<Todo> findTasks (List<Todo> todos, TaskFilter filter) {
