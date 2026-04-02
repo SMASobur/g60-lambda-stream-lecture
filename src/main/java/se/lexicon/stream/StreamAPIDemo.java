@@ -11,11 +11,18 @@ public class StreamAPIDemo {
     void main() {
         //Predicate<Integer> isEven = number -> number % 2 == 0;
         List<Integer> numbers = List.of(1, 2, 3, 4, 5,6,7,8,9,10);
+
         List<Integer> evenNumbers = numbers.stream()
                 //.filter(isEven)
-                .filter((number)-> number % 2 ==0)
+                .filter(number-> number % 2 ==0)
                 .toList();
         System.out.println(evenNumbers);
+
+        Predicate<Integer> isOdd = n -> n % 2 != 0;
+        List<Integer> oddNumbers = numbers.stream()
+                .filter(isOdd)
+                .toList();
+        System.out.println(oddNumbers);
 
 
         List<Employee> employees = Arrays.asList(
