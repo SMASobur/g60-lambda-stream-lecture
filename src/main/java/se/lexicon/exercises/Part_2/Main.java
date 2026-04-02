@@ -25,7 +25,15 @@ public class Main {
         List<Person> activePeople = people.stream()
                 .filter(person -> person.isActive())
                 .toList();
-        System.out.println(activePeople);
+        System.out.println("\nAll Active people: "+activePeople);
+
+        //2. Map all names.
+        System.out.println("\n--- Map all name ---");
+        List<String> names = people.stream()
+                .map(person -> person.getName())
+                .toList();
+        System.out.println("\nMap all names: "+ names);
+
 
     }
 }
