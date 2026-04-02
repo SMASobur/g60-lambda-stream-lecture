@@ -1,6 +1,8 @@
 package se.lexicon.exercises.Part_2;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Main {
     void main (){
@@ -41,6 +43,13 @@ public class Main {
                 .count();
         System.out.println("Adults: "+ adults);
 
+        //4. Sort by age.
+        System.out.println("\n--- Sort by age. ---");
+        List<String> sortedNameByAge = people.stream()
+                .sorted(Comparator.comparingDouble(p-> p.getAge()))
+                .map(e-> e.getName())
+                .toList();
+        System.out.println("Sorted Name: "+ sortedNameByAge);
 
     }
 }
