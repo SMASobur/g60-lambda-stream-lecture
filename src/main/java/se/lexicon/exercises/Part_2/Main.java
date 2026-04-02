@@ -2,6 +2,7 @@ package se.lexicon.exercises.Part_2;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -45,11 +46,17 @@ public class Main {
 
         //4. Sort by age.
         System.out.println("\n--- Sort by age. ---");
-        List<String> sortedNameByAge = people.stream()
-                .sorted(Comparator.comparingDouble(p-> p.getAge()))
-                .map(e-> e.getName())
+        List<Person> sortedByAge = people.stream()
+                .sorted(Comparator.comparingInt(p-> p.getAge()))
                 .toList();
-        System.out.println("Sorted Name: "+ sortedNameByAge);
+        System.out.println("Sorted List: "+ sortedByAge);
 
+        // 5. Find first active person in Stockholm.
+        System.out.println("\n--- Find first active person in Stockholm. ---");
+
+        Optional<Person> firstActivePerson = people.stream()
+                .filter(person -> person.isActive() && person.getCity().equals("Stockholm"))
+                .findFirst();
+        System.out.println("First Person in Stockholm: "+ firstActivePerson);
     }
 }
