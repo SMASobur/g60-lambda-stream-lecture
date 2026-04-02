@@ -82,5 +82,13 @@ public class StreamAPIDemo {
         System.out.println("Total Emplayees: "+ totalEmployees1);
 
         //TODO: Get unique departments
+        System.out.println("\n---   Departments List  ---");
+        List<String> uniqueDepartment = employees.stream() //creates a stream of employees
+                .map(e->e.getDepartment()) // extracts department names
+                .distinct() // removes duplicate
+                .collect(Collectors.toList()); //puts results into a list
+        // .collect(Collectors.toUnmodifiableList()); //creates a read-only list
+        System.out.println("Department name: "+ uniqueDepartment);
+
     }
 }
