@@ -6,11 +6,12 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class StreamAPIDemo {
     void main() {
         //Predicate<Integer> isEven = number -> number % 2 == 0;
-        List<Integer> numbers = List.of(1, 2, 3, 4, 5,6,7,8,9,10);
+        List<Integer> numbers = List.of(-2,-1,1, 2, 3, 4, 5,6,7,8,9,10);
 
         List<Integer> evenNumbers = numbers.stream()
                 //.filter(isEven)
@@ -69,11 +70,17 @@ public class StreamAPIDemo {
                 .sum();
         System.out.println("Total salary expense: " + totalSalaryExpense);
 
+
         //TODO: Counting the total number of employees in the list.
+        System.out.println("\n---  Total number of employees ---");
+        long totalEmployees = employees.stream()
+                .count();
+        System.out.println("Total employees: "+ totalEmployees);
+
+        //Alternative way
+        int totalEmployees1 = employees.size();
+        System.out.println("Total Emplayees: "+ totalEmployees1);
+
         //TODO: Get unique departments
-
-
-
-
     }
 }
