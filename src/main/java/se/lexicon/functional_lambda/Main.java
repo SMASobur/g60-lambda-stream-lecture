@@ -26,9 +26,6 @@ public class Main {
             System.out.println("todo = " + todo);
         }
 
-        // Defining filters using Lambdas : boolean matches(Todo todo);
-
-        TaskFilter highPriority = todo -> todo.getPriority() >= 4;
 
         // Expanded syntax version
        /* TaskFilter highPriority1 = (Todo todo) -> {
@@ -39,6 +36,8 @@ public class Main {
             }
         };*/
 
+        // Defining filters using Lambdas : boolean matches(Todo todo);
+        TaskFilter highPriority = todo -> todo.getPriority() >= 4;
         System.out.println("\n--- Tasks with high priority ---");
         System.out.println("High priority tasks:" + findTasks(todos, highPriority));
 
@@ -50,16 +49,19 @@ public class Main {
         System.out.println("\n--- Tasks with low priority ---");
         System.out.println("Low priority tasks:" + findTasks(todos, lowPriority));
 
-        TaskFilter completed = todo -> todo.isCompleted();
-        System.out.println("Completed tasks:" + findTasks(todos, completed));
+        TaskFilter completed = todo1 -> todo1.isCompleted();
+        System.out.println("\nCompleted tasks:" + findTasks(todos, completed));
 
         //TaskFilter notCompleted = todo -> !todo.isCompleted();
         TaskFilter notCompleted = completed.negate();
+        System.out.println("\nNot completed tasks:" + findTasks(todos, notCompleted));
 
 
         //Defining actions using Lambdas : void run(Todo task);
         TaskAction markCompleted = task -> task.setCompleted(true);
+
         TaskAction increasePriority = task -> task.setPriority(task.getPriority() + 1);
+
         TaskAction printTask = task -> System.out.println("Updated: " + task);
 
         System.out.println("\n--- Marking high priority tasks as completed ---");
@@ -68,7 +70,7 @@ public class Main {
 
         // Delete high priority tasks
         System.out.println("\n--- Delete high priority tasks ---");
-        List<Todo> deletedHighPriority = deleteMatchingTasks(todos, todo -> todo.getPriority() >= 4);
+        List<Todo> deletedHighPriority = deleteMatchingTasks(todos, highPriority);
         System.out.println("Deleted high priority tasks: " + deletedHighPriority);
 
         System.out.println("\n--- Updating tasks: Increase priority of not completed tasks ---");
