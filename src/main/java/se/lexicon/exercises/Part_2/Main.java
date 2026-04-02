@@ -34,6 +34,13 @@ public class Main {
                 .toList();
         System.out.println("\nMap all names: "+ names);
 
+        //3. Count adults.
+        System.out.println("\n--- Count adults. ---");
+        long adults = people.stream()
+                .filter(person -> person.getAge()>= 18)
+                .count();
+        System.out.println("Adults: "+ adults);
+
 
     }
 }
